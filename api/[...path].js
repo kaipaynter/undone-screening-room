@@ -1,7 +1,7 @@
 export default async (req, res) => {
   try {
     // Import the built server dynamically
-    const serverModule = await import('../../dist/server/server.js');
+    const serverModule = await import('../dist/server/server.js');
     const handler = serverModule.default;
     
     if (!handler || !handler.fetch) {
