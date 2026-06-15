@@ -54,17 +54,9 @@ export default async (req, res) => {
     res.status(response.status).send(Buffer.from(buffer));
   } catch (error) {
     console.error("Server error:", error);
-    res.status(500).setHeader("Content-Type", "text/html").send(`
-      <!DOCTYPE html>
-      <html>
-        <head><title>Error</title></head>
-        <body>
-          <h1>Server Error</h1>
-          <p>${error instanceof Error ? error.message : String(error)}</p>
-          <pre>${error instanceof Error ? error.stack : ""}</pre>
-        </body>
-      </html>
-    `);
+    res.status(500).setHeader("Content-Type", "text/html").send(`<!DOCTYPE html>
+<html><head><title>Server Error</title></head>
+<body><h1>Something went wrong</h1><p>An unexpected error occurred. Please try again later.</p></body></html>`);
   }
 };
 
