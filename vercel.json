@@ -1,3 +1,10 @@
 {
-  "buildCommand": "npm run build"
+  "buildCommand": "npm run build",
+  "public": "public",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api/[...path]"
+    }
+  ]
 }
