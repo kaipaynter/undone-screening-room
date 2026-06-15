@@ -14,12 +14,14 @@ export const Route = createFileRoute("/auth")({
       { title: "Access UNDONE" },
       {
         name: "description",
-        content: "Sign in or request invite-only access to the protected UNDONE screening and pitch materials.",
+        content:
+          "Sign in or request invite-only access to the protected UNDONE screening and pitch materials.",
       },
       { property: "og:title", content: "Access UNDONE" },
       {
         property: "og:description",
-        content: "Sign in or request invite-only access to the protected UNDONE screening and pitch materials.",
+        content:
+          "Sign in or request invite-only access to the protected UNDONE screening and pitch materials.",
       },
       { property: "og:url", content: "/auth" },
       { name: "robots", content: "noindex, nofollow" },
@@ -142,10 +144,12 @@ function AuthPage() {
       <div className="grid w-full max-w-6xl gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(420px,0.75fr)]">
         <section className="rounded-lg border border-border/60 bg-card/50 p-6 sm:p-8 lg:p-10">
           <p className="undone-eyebrow">Invite-only access</p>
-          <h1 className="mt-3 text-4xl font-semibold text-foreground sm:text-6xl">Enter the UNDONE library.</h1>
+          <h1 className="mt-3 text-4xl font-semibold text-foreground sm:text-6xl">
+            Enter the UNDONE library.
+          </h1>
           <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-            Approved viewers can open the private screening room for Episode 1 and unlock the protected
-            pitch deck, one-sheet, series bible, and pilot script.
+            Approved viewers can open the private screening room for Episode 1 and unlock the
+            protected pitch deck, one-sheet, series bible, and pilot script.
           </p>
           <div className="mt-10 grid gap-4">
             <div className="rounded-lg border border-border/60 bg-background/45 p-5">
@@ -154,7 +158,8 @@ function AuthPage() {
                 <div>
                   <p className="text-sm font-medium text-foreground">Approval-based access</p>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    New accounts start as pending until approved. Once approved, the private library opens automatically.
+                    New accounts start as pending until approved. Once approved, the private library
+                    opens automatically.
                   </p>
                 </div>
               </div>
@@ -165,7 +170,8 @@ function AuthPage() {
                 <div>
                   <p className="text-sm font-medium text-foreground">Protected materials</p>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    Final uploads will stream inside the site with private file access and without obvious download controls.
+                    Final uploads will stream inside the site with private file access and without
+                    obvious download controls.
                   </p>
                 </div>
               </div>
@@ -175,7 +181,10 @@ function AuthPage() {
                 <Mail className="mt-1 text-primary" />
                 <div>
                   <p className="text-sm font-medium text-foreground">Need help?</p>
-                  <a href="mailto:contact@beartigerproductions.com" className="mt-2 block text-sm leading-6 text-muted-foreground transition-colors hover:text-primary">
+                  <a
+                    href="mailto:contact@beartigerproductions.com"
+                    className="mt-2 block text-sm leading-6 text-muted-foreground transition-colors hover:text-primary"
+                  >
                     contact@beartigerproductions.com
                   </a>
                 </div>
@@ -187,7 +196,9 @@ function AuthPage() {
         <Card className="rounded-lg border-border/70 bg-card/88 shadow-2xl backdrop-blur-sm">
           <CardHeader className="space-y-3 pb-3">
             <p className="undone-eyebrow">{mode === "signin" ? "Sign in" : "Request access"}</p>
-            <CardTitle className="text-3xl text-foreground">{mode === "signin" ? "Welcome back." : "Create your access request."}</CardTitle>
+            <CardTitle className="text-3xl text-foreground">
+              {mode === "signin" ? "Welcome back." : "Create your access request."}
+            </CardTitle>
             <p className="text-sm leading-6 text-muted-foreground">{helperCopy}</p>
           </CardHeader>
           <CardContent>
@@ -196,7 +207,9 @@ function AuthPage() {
                 type="button"
                 onClick={() => setMode("signin")}
                 className={`rounded-md px-3 py-2 text-sm transition-colors ${
-                  mode === "signin" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                  mode === "signin"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Sign in
@@ -205,7 +218,9 @@ function AuthPage() {
                 type="button"
                 onClick={() => setMode("signup")}
                 className={`rounded-md px-3 py-2 text-sm transition-colors ${
-                  mode === "signup" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                  mode === "signup"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Request access
@@ -272,8 +287,16 @@ function AuthPage() {
               Continue with Google
             </Button>
 
-            {message ? <p className="mt-5 rounded-lg border border-primary/30 bg-primary/10 p-4 text-sm leading-6 text-foreground">{message}</p> : null}
-            {error ? <p className="mt-5 rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-sm leading-6 text-foreground">{error}</p> : null}
+            {message ? (
+              <p className="mt-5 rounded-lg border border-primary/30 bg-primary/10 p-4 text-sm leading-6 text-foreground">
+                {message}
+              </p>
+            ) : null}
+            {error ? (
+              <p className="mt-5 rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-sm leading-6 text-foreground">
+                {error}
+              </p>
+            ) : null}
           </CardContent>
         </Card>
       </div>

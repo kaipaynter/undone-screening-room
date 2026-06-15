@@ -1,6 +1,7 @@
 ## UNDONE pitch site plan
 
 ### What I’ll build
+
 1. **Public pitch site**
    - Replace the placeholder homepage with a cinematic single-route pitch experience for **UNDONE**.
    - Use the uploaded materials and Canva copy to build: title, key art, logline, trailer calls-to-action, audience/why-it-matters section, creator/team section, and contact section.
@@ -38,6 +39,7 @@
    - Preserve the practical limitation note: no web solution can fully prevent determined recording or capture.
 
 ### Content I’ll use from your materials
+
 - The uploaded slides to shape:
   - series bible / episode progression
   - audience positioning
@@ -48,6 +50,7 @@
 - The public site will feature the **full team** section and the **live contact details from the materials**.
 
 ### Technical details
+
 - **Routes**
   - `/` public pitch site
   - `/auth` sign-in / access-request page
@@ -64,4 +67,5 @@
   - Use the uploaded imagery as site assets where appropriate, rather than just as references, for the pitch presentation sections.
 
 ### Deliverable for this implementation pass
+
 A polished first version of the UNDONE site with the public pitch experience complete, the invite-only auth flow in place, and the protected library fully structured for later media/document uploads.

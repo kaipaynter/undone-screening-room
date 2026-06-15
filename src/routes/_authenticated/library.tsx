@@ -1,7 +1,15 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Clock3, FileText, LoaderCircle, Lock, LogOut, PlayCircle, ShieldCheck } from "lucide-react";
+import {
+  Clock3,
+  FileText,
+  LoaderCircle,
+  Lock,
+  LogOut,
+  PlayCircle,
+  ShieldCheck,
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,9 +22,15 @@ export const Route = createFileRoute("/_authenticated/library")({
   head: () => ({
     meta: [
       { title: "UNDONE Library" },
-      { name: "description", content: "Private screening room and protected UNDONE pitch materials." },
+      {
+        name: "description",
+        content: "Private screening room and protected UNDONE pitch materials.",
+      },
       { property: "og:title", content: "UNDONE Library" },
-      { property: "og:description", content: "Private screening room and protected UNDONE pitch materials." },
+      {
+        property: "og:description",
+        content: "Private screening room and protected UNDONE pitch materials.",
+      },
       { property: "og:url", content: "/library" },
       { name: "robots", content: "noindex, nofollow" },
     ],
@@ -92,7 +106,9 @@ function LibraryPage() {
         }
       } catch (caught) {
         if (active) {
-          setError(caught instanceof Error ? caught.message : "Unable to load your library access.");
+          setError(
+            caught instanceof Error ? caught.message : "Unable to load your library access.",
+          );
         }
       } finally {
         if (active) {
@@ -136,7 +152,10 @@ function LibraryPage() {
           <CardContent>
             <p className="text-sm leading-6 text-muted-foreground">{error}</p>
             <div className="mt-6 flex gap-3">
-              <Button onClick={() => navigate({ to: "/auth", replace: true })} className="rounded-lg">
+              <Button
+                onClick={() => navigate({ to: "/auth", replace: true })}
+                className="rounded-lg"
+              >
                 Return to access page
               </Button>
             </div>
@@ -155,16 +174,23 @@ function LibraryPage() {
         <div className="flex flex-col gap-6 rounded-lg border border-border/60 bg-card/55 p-6 sm:flex-row sm:items-start sm:justify-between sm:p-8">
           <div>
             <p className="undone-eyebrow">Private library</p>
-            <h1 className="mt-3 text-4xl font-semibold text-foreground sm:text-6xl">UNDONE screening room</h1>
+            <h1 className="mt-3 text-4xl font-semibold text-foreground sm:text-6xl">
+              UNDONE screening room
+            </h1>
             <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
-              Welcome{profile?.full_name ? `, ${profile.full_name}` : ""}. This is the protected home for Episode 1 and the downloadable pitch materials.
+              Welcome{profile?.full_name ? `, ${profile.full_name}` : ""}. This is the protected
+              home for Episode 1 and the downloadable pitch materials.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <Badge className="rounded-md px-3 py-1 text-xs uppercase tracking-[0.14em]">
               {profile?.access_status ?? "pending"}
             </Badge>
-            <Button variant="outline" onClick={handleSignOut} className="rounded-lg border-border/70 bg-background/45 text-foreground">
+            <Button
+              variant="outline"
+              onClick={handleSignOut}
+              className="rounded-lg border-border/70 bg-background/45 text-foreground"
+            >
               <LogOut />
               Sign out
             </Button>
@@ -176,7 +202,11 @@ function LibraryPage() {
             <Card className="rounded-lg border-border/70 bg-card/70 shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3 text-2xl text-foreground">
-                  {revoked ? <Lock className="text-primary" /> : <Clock3 className="text-primary" />}
+                  {revoked ? (
+                    <Lock className="text-primary" />
+                  ) : (
+                    <Clock3 className="text-primary" />
+                  )}
                   {revoked ? "Access revoked" : "Approval pending"}
                 </CardTitle>
               </CardHeader>
@@ -187,7 +217,13 @@ function LibraryPage() {
                     : "Your account request has been received. Once approved, Episode 1 and the protected documents will unlock here automatically."}
                 </p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                  Contact: <a href="mailto:contact@beartigerproductions.com" className="text-foreground underline underline-offset-4">contact@beartigerproductions.com</a>
+                  Contact:{" "}
+                  <a
+                    href="mailto:contact@beartigerproductions.com"
+                    className="text-foreground underline underline-offset-4"
+                  >
+                    contact@beartigerproductions.com
+                  </a>
                 </p>
               </CardContent>
             </Card>
@@ -223,12 +259,15 @@ function LibraryPage() {
                   <div className="flex aspect-video items-center justify-center rounded-lg border border-dashed border-primary/40 bg-background/55">
                     <div className="text-center">
                       <PlayCircle className="mx-auto text-primary" />
-                      <p className="mt-3 text-sm font-medium text-foreground">Private streaming slot ready</p>
+                      <p className="mt-3 text-sm font-medium text-foreground">
+                        Private streaming slot ready
+                      </p>
                     </div>
                   </div>
                   <p className="mt-5 text-sm leading-6 text-muted-foreground">
-                    Final media will stream in-page here for approved viewers. Native download controls
-                    can be minimized, but no web player can fully prevent screen recording or capture.
+                    Final media will stream in-page here for approved viewers. Native download
+                    controls can be minimized, but no web player can fully prevent screen recording
+                    or capture.
                   </p>
                 </CardContent>
               </Card>
@@ -241,7 +280,8 @@ function LibraryPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm leading-6 text-muted-foreground">
-                    Your account is approved. As final materials are added, they will appear here without any change to your login flow.
+                    Your account is approved. As final materials are added, they will appear here
+                    without any change to your login flow.
                   </p>
                 </CardContent>
               </Card>
@@ -254,7 +294,10 @@ function LibraryPage() {
               </div>
               <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
                 {documents.map((document) => (
-                  <Card key={document.title} className="rounded-lg border-border/70 bg-card/70 shadow-lg">
+                  <Card
+                    key={document.title}
+                    className="rounded-lg border-border/70 bg-card/70 shadow-lg"
+                  >
                     <CardHeader>
                       <CardTitle className="flex items-center gap-3 text-xl text-foreground">
                         <FileText className="text-primary" />
