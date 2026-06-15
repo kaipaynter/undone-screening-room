@@ -1,6 +1,6 @@
 {
   "buildCommand": "npm run build",
-  "public": "dist/client",
+  "public": true,
   "rewrites": [
     {
       "source": "/assets/(.*)",
