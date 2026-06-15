@@ -94,6 +94,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "UNDONE" },
+      { name: "description", content: "Undone Pitch Platform showcases TV show concepts, offering trailers, scripts, and pitch documents for industry professionals." },
+      { property: "og:description", content: "Undone Pitch Platform showcases TV show concepts, offering trailers, scripts, and pitch documents for industry professionals." },
+      { name: "twitter:description", content: "Undone Pitch Platform showcases TV show concepts, offering trailers, scripts, and pitch documents for industry professionals." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/069faf1b-35e2-4fbf-81ac-bf38daac037a/id-preview-29ef7a61--57a4c054-876f-44bc-b57e-68f6f067fef4.lovable.app-1781522862473.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/069faf1b-35e2-4fbf-81ac-bf38daac037a/id-preview-29ef7a61--57a4c054-876f-44bc-b57e-68f6f067fef4.lovable.app-1781522862473.png" },
     ],
     scripts: [
       {
