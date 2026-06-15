@@ -3,7 +3,11 @@
   "public": "public",
   "rewrites": [
     {
-      "source": "^(?!/assets/).*",
+      "source": "/",
+      "destination": "/api/[...path]"
+    },
+    {
+      "source": "/([^.]+)$",
       "destination": "/api/[...path]",
       "regex": true
     }
