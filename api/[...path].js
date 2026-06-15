@@ -10,33 +10,45 @@ export default async (req, res) => {
     const requestPath = req.url.split("?")[0];
     if (requestPath.startsWith("/assets/")) {
       const filePath = path.join(__dirname, "..", "public", requestPath);
+      console.log(`[STATIC] Requested: ${requestPath}, Full path: ${filePath}`);
+      
       // Security: prevent directory traversal
-      if (!filePath.startsWith(path.join(__dirname, "..", "public"))) {
+      const publicDir = path.join(__dirname, "..", "public");
+      if (!filePath.startsWith(publicDir)) {
+        console.log(`[STATIC] Security check failed`);
         res.status(403).send("Forbidden");
         return;
       }
+      
       try {
-        const file = fs.readFileSync(filePath);
-        const ext = path.extname(requestPath);
-        const mimeTypes = {
-          ".js": "application/javascript",
-          ".css": "text/css",
-          ".json": "application/json",
-          ".png": "image/png",
-          ".jpg": "image/jpeg",
-          ".gif": "image/gif",
-          ".svg": "image/svg+xml",
-          ".woff": "font/woff",
-          ".woff2": "font/woff2",
-          ".ttf": "font/ttf",
-          ".eot": "application/vnd.ms-fontobject",
-        };
-        const contentType = mimeTypes[ext] || "application/octet-stream";
-        res.setHeader("Content-Type", contentType);
-        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-        res.send(file);
-        return;
+        const stats = fs.statSync(filePath);
+        console.log(`[STATIC] File found, size: ${stats.size}`);
+        
+        if (stats.isFile()) {
+          const file = fs.readFileSync(filePath);
+          const ext = path.extname(requestPath);
+          const mimeTypes = {
+            ".js": "application/javascript",
+            ".css": "text/css",
+            ".json": "application/json",
+            ".png": "image/png",
+            ".jpg": "image/jpeg",
+            ".gif": "image/gif",
+            ".svg": "image/svg+xml",
+            ".woff": "font/woff",
+            ".woff2": "font/woff2",
+            ".ttf": "font/ttf",
+            ".eot": "application/vnd.ms-fontobject",
+          };
+          const contentType = mimeTypes[ext] || "application/octet-stream";
+          console.log(`[STATIC] Serving with Content-Type: ${contentType}`);
+          res.setHeader("Content-Type", contentType);
+          res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+          res.send(file);
+          return;
+        }
       } catch (err) {
+        console.log(`[STATIC] File error: ${err.message}, continuing to SSR`);
         // File not found or read error, continue to SSR handler
       }
     }
