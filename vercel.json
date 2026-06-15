@@ -1,4 +1,11 @@
 {
   "buildCommand": "npm run build",
-  "public": "public"
+  "public": "public",
+  "rewrites": [
+    {
+      "source": "^(?!/assets/).*",
+      "destination": "/api/[...path]",
+      "regex": true
+    }
+  ]
 }
