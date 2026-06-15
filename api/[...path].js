@@ -1,5 +1,46 @@
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 export default async (req, res) => {
   try {
+    // Serve static files from public/assets/
+    const requestPath = req.url.split("?")[0];
+    if (requestPath.startsWith("/assets/")) {
+      const filePath = path.join(__dirname, "..", "public", requestPath);
+      // Security: prevent directory traversal
+      if (!filePath.startsWith(path.join(__dirname, "..", "public"))) {
+        res.status(403).send("Forbidden");
+        return;
+      }
+      try {
+        const file = fs.readFileSync(filePath);
+        const ext = path.extname(requestPath);
+        const mimeTypes = {
+          ".js": "application/javascript",
+          ".css": "text/css",
+          ".json": "application/json",
+          ".png": "image/png",
+          ".jpg": "image/jpeg",
+          ".gif": "image/gif",
+          ".svg": "image/svg+xml",
+          ".woff": "font/woff",
+          ".woff2": "font/woff2",
+          ".ttf": "font/ttf",
+          ".eot": "application/vnd.ms-fontobject",
+        };
+        const contentType = mimeTypes[ext] || "application/octet-stream";
+        res.setHeader("Content-Type", contentType);
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+        res.send(file);
+        return;
+      } catch (err) {
+        // File not found or read error, continue to SSR handler
+      }
+    }
+
     // Import the built server dynamically
     const serverModule = await import("../dist/server/server.js");
     const handler = serverModule.default;
